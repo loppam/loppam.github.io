@@ -8,14 +8,14 @@ export default defineConfig({
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
-      "vaul@1.1.2": "vaul",
+      vaul: "vaul",
       "sonner@2.0.3": "sonner",
       "recharts@2.15.2": "recharts",
       "react-resizable-panels@2.1.7": "react-resizable-panels",
       "react-hook-form@7.55.0": "react-hook-form",
-      "react-day-picker@8.10.1": "react-day-picker",
+      "react-day-picker": "react-day-picker",
       "next-themes@0.4.6": "next-themes",
-      "lucide-react@0.487.0": "lucide-react",
+      "lucide-react": "lucide-react",
       "input-otp@1.4.2": "input-otp",
       "embla-carousel-react@8.6.0": "embla-carousel-react",
       "cmdk@1.1.1": "cmdk",

@@ -1,0 +1,101 @@
+{
+  "articles": [
+    {
+      "id": "my-journey-as-lopam",
+      "title": "My Journey as LOPAM",
+      "excerpt": "From building Sneaklin to working at Nomba, here's my story as Pariola Ololade (LOPAM) - the challenges, wins, and lessons learned along the way.",
+      "content": "<p>Hi, I'm Pariola Ololade, but most people know me as LOPAM. Three years ago, I started building Sneaklin as a side project. I had no idea it would become the foundation of my career as a frontend engineer.</p><p>Today, Sneaklin handles 30+ daily orders and has processed over $10k in revenue. But more importantly, it taught me what it means to build production software that real people depend on.</p>",
+      "date": "2024-01-15",
+      "readTime": "8 min read",
+      "tags": ["Personal", "LOPAM", "Journey"],
+      "published": true
+    },
+    {
+      "id": "building-sneaklin-my-story",
+      "title": "Building Sneaklin: My E-commerce Journey",
+      "excerpt": "How I built and maintained Sneaklin from scratch - the real challenges, technical decisions, and what it taught me about being a developer.",
+      "content": "<p>Sneaklin was my first major project, an e-commerce platform I built from the ground up. It was a crash course in full-stack development, but my primary focus was always the frontend experience.</p>",
+      "date": "2024-01-08",
+      "readTime": "12 min read",
+      "tags": ["Sneaklin", "LOPAM", "E-commerce"],
+      "published": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "sneaklin",
+      "title": "Sneaklin — E-commerce Platform",
+      "role": "Frontend Developer",
+      "duration": "Jan 2021 – Present",
+      "tech": ["React", "HTML", "CSS", "Git", "Bootstrap"],
+      "live_demo": "https://lopam.pario.la/sneaklin",
+      "repo": "https://github.com/loppam/final",
+      "summary": "Built and maintained a production e-commerce app handling 30+ daily orders and $10k+ revenue. Focus: responsive UI, performance optimization, checkout UX.",
+      "impact": [
+        "Reduced page load times by 25% through code refactors",
+        "Maintained responsive UX across devices",
+        "Integrated payment flows"
+      ],
+      "takeaway": "I focus on practical performance wins and shipping customer-facing features.",
+      "problem": "Sneaklin needed a robust e-commerce platform that could handle high daily transaction volumes while maintaining excellent performance and user experience across all devices.",
+      "responsibilities": [
+        "Built responsive product catalog and shopping cart interfaces",
+        "Implemented checkout flows with payment gateway integration",
+        "Optimized asset loading and code splitting for faster page loads",
+        "Collaborated with backend team on API integration",
+        "Maintained and debugged production issues"
+      ],
+      "approach": "I architected the frontend using React with a component-based approach, focusing on reusability and maintainability. Performance was critical, so I implemented lazy loading for images, code splitting for routes, and optimized bundle sizes. For the checkout flow, I prioritized clarity and trust signals to reduce cart abandonment.",
+      "whatIdDoDifferently": "I'd implement a state management solution like Zustand from the start to better handle complex cart and checkout states."
+    },
+    {
+      "id": "nomba-kYC",
+      "title": "Nomba — KYC & Transaction UX Improvements",
+      "role": "Frontend Engineer Intern",
+      "duration": "Sept 2024 – Feb 2025",
+      "tech": ["React", "TypeScript", "REST APIs"],
+      "live_demo": null,
+      "repo": "https://github.com/loppam/unichow",
+      "summary": "Enhanced KYC workflows and transaction UIs—added rejection reasons, pagination, search, and verification fixes, improving compliance and reducing errors.",
+      "impact": [
+        "Improved verification accuracy",
+        "Optimized transaction resolution tables",
+        "Reduced data inconsistencies"
+      ],
+      "takeaway": "I work well with backend teams to solve reliability and UX problems in fintech.",
+      "problem": "The KYC workflow needed better user experience and clearer feedback for rejected applications, while transaction tables required better performance and search capabilities.",
+      "responsibilities": [
+        "Enhanced KYC rejection workflow with detailed reasons",
+        "Implemented pagination and search for transaction tables",
+        "Fixed verification bugs and improved data consistency",
+        "Collaborated with compliance team on UX improvements"
+      ],
+      "approach": "I focused on creating clear, intuitive interfaces that made complex financial data accessible. I implemented real-time search and pagination to handle large datasets efficiently.",
+      "whatIdDoDifferently": "I'd implement better error handling and loading states from the start to improve user experience during data processing."
+    },
+    {
+      "id": "unichow",
+      "title": "UniChow — Wallet & Payment Integration",
+      "role": "Frontend Engineer",
+      "duration": "2025",
+      "tech": ["TypeScript", "React", "Paystack", "Firebase"],
+      "live_demo": "https://lopam.pario.la/unichow",
+      "repo": "https://github.com/loppam/unichow",
+      "summary": "Implemented wallet top-up using Paystack and built user-facing payment flows for a campus food app.",
+      "impact": [
+        "Delivered a wallet top-up flow to production",
+        "Improved UX for payments and order flows"
+      ],
+      "takeaway": "I build payments & integrations that prioritize security and usability.",
+      "problem": "Students needed a seamless way to manage their funds and make purchases on the campus food app, requiring secure payment integration and intuitive wallet management.",
+      "responsibilities": [
+        "Integrated Paystack payment gateway for wallet top-ups",
+        "Built user-facing wallet balance and transaction history interfaces",
+        "Implemented secure payment flows with proper error handling",
+        "Connected frontend to Firebase backend for real-time updates"
+      ],
+      "approach": "I prioritized security and user trust in the payment flow, implementing clear visual feedback for every step and robust error handling for failed transactions.",
+      "whatIdDoDifferently": "I'd implement better transaction status tracking and push notifications for payment confirmations."
+    }
+  ]
+}
