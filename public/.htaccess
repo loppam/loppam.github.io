@@ -1,0 +1,18 @@
+# MIME types for JavaScript modules
+AddType application/javascript .js
+AddType application/javascript .mjs
+AddType text/javascript .js
+
+# Enable CORS for module scripts
+<FilesMatch "\.(js|mjs)$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Content-Type "application/javascript"
+</FilesMatch>
+
+# Fallback for SPA routing
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
