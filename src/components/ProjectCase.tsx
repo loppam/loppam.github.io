@@ -12,8 +12,8 @@ interface Project {
   role: string;
   duration: string;
   tech: string[];
-  live_demo: string | null;
-  repo: string;
+  live_demo?: string | null;
+  repo?: string;
   summary: string;
   impact: string[];
   takeaway: string;
@@ -21,6 +21,7 @@ interface Project {
   responsibilities: string[];
   approach: string;
   whatIdDoDifferently: string;
+  image?: string; // optional cover image URL
 }
 
 interface ProjectCaseProps {
@@ -83,47 +84,52 @@ export function ProjectCase({ project, onClose }: ProjectCaseProps) {
             <h1 className="text-black mb-4">{project.title}</h1>
             <p className="text-black/70 max-w-3xl mb-8">{project.summary}</p>
 
-            {/* Image */}
-            <div className="w-full aspect-video overflow-hidden bg-black/5 border border-black/10 mb-8">
-              <ImageWithFallback
-                src=""
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            {/* Image (optional) */}
+            {typeof project.image === "string" && project.image.trim() && (
+              <div className="w-full aspect-video overflow-hidden bg-black/5 border border-black/10 mb-8">
+                <ImageWithFallback
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
 
             {/* Links */}
             <div className="flex flex-wrap gap-4">
-              {project.live_demo && (
+              {typeof project.live_demo === "string" &&
+                project.live_demo.trim() && (
+                  <Button
+                    variant="default"
+                    className="bg-black text-white hover:bg-black/90"
+                    asChild
+                  >
+                    <a
+                      href={project.live_demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Live Demo
+                    </a>
+                  </Button>
+                )}
+              {typeof project.repo === "string" && project.repo.trim() && (
                 <Button
-                  variant="default"
-                  className="bg-black text-white hover:bg-black/90"
+                  variant="outline"
+                  className="border-black text-black hover:bg-black/5"
                   asChild
                 >
                   <a
-                    href={project.live_demo}
+                    href={project.repo}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Live Demo
+                    <Github className="mr-2 h-4 w-4" />
+                    View Code
                   </a>
                 </Button>
               )}
-              <Button
-                variant="outline"
-                className="border-black text-black hover:bg-black/5"
-                asChild
-              >
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="mr-2 h-4 w-4" />
-                  View Code
-                </a>
-              </Button>
             </div>
           </div>
 

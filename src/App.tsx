@@ -20,8 +20,8 @@ interface Project {
   role: string;
   duration: string;
   tech: string[];
-  live_demo: string | null;
-  repo: string;
+  live_demo?: string | null;
+  repo?: string;
   summary: string;
   impact: string[];
   takeaway: string;
@@ -29,6 +29,7 @@ interface Project {
   responsibilities: string[];
   approach: string;
   whatIdDoDifferently: string;
+  image?: string;
 }
 
 function HomePage() {
