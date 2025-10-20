@@ -29,7 +29,6 @@
       "duration": "Jan 2021 – Present",
       "tech": ["React", "HTML", "CSS", "Git", "Bootstrap"],
       "live_demo": "https://sneaklin.com/",
-      "repo": null,
       "summary": "Built and maintained a production e-commerce app handling 30+ daily orders and $10k+ revenue. Focus: responsive UI, performance optimization, checkout UX.",
       "impact": [
         "Reduced page load times by 25% through code refactors",
@@ -54,8 +53,7 @@
       "role": "Frontend Engineer Intern",
       "duration": "Sept 2024 – Feb 2025",
       "tech": ["React", "TypeScript", "REST APIs"],
-      "live_demo": null,
-      "repo": null,
+
       "summary": "Enhanced KYC workflows and transaction UIs—added rejection reasons, pagination, search, and verification fixes, improving compliance and reducing errors.",
       "impact": [
         "Improved verification accuracy",
