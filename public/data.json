@@ -28,8 +28,8 @@
       "role": "Frontend Developer",
       "duration": "Jan 2021 – Present",
       "tech": ["React", "HTML", "CSS", "Git", "Bootstrap"],
-      "live_demo": "https://lopam.pario.la/sneaklin",
-      "repo": "https://github.com/loppam/final",
+      "live_demo": "https://sneaklin.com/",
+      "repo": null,
       "summary": "Built and maintained a production e-commerce app handling 30+ daily orders and $10k+ revenue. Focus: responsive UI, performance optimization, checkout UX.",
       "impact": [
         "Reduced page load times by 25% through code refactors",
@@ -55,7 +55,7 @@
       "duration": "Sept 2024 – Feb 2025",
       "tech": ["React", "TypeScript", "REST APIs"],
       "live_demo": null,
-      "repo": "https://github.com/loppam/unichow",
+      "repo": null,
       "summary": "Enhanced KYC workflows and transaction UIs—added rejection reasons, pagination, search, and verification fixes, improving compliance and reducing errors.",
       "impact": [
         "Improved verification accuracy",
@@ -79,7 +79,7 @@
       "role": "Frontend Engineer",
       "duration": "2025",
       "tech": ["TypeScript", "React", "Paystack", "Firebase"],
-      "live_demo": "https://lopam.pario.la/unichow",
+      "live_demo": "https://unichow.vercel.app",
       "repo": "https://github.com/loppam/unichow",
       "summary": "Implemented wallet top-up using Paystack and built user-facing payment flows for a campus food app.",
       "impact": [

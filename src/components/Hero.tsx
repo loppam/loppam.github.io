@@ -108,7 +108,7 @@ export function Hero() {
               className="border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-120 hover:scale-[1.03] active:scale-[0.98]"
               asChild
             >
-              <a href="#" download>
+              <a href="/Ololade%20Pariola.pdf" download="Ololade Pariola.pdf">
                 <Download className="mr-2 h-4 w-4" />
                 Download CV
               </a>
