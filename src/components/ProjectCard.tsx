@@ -9,8 +9,8 @@ interface ProjectCardProps {
   title: string;
   summary: string;
   tech: string[];
-  repo: string;
-  live_demo: string | null;
+  repo?: string;
+  live_demo?: string | null;
   onClick: () => void;
 }
 
@@ -57,7 +57,7 @@ export function ProjectCard({
 
         {/* Links */}
         <div className="flex gap-4 pt-3 border-t border-black/10">
-          {live_demo && (
+          {typeof live_demo === "string" && live_demo.trim() && (
             <a
               href={live_demo}
               target="_blank"
@@ -69,16 +69,18 @@ export function ProjectCard({
               Live Demo
             </a>
           )}
-          <a
-            href={repo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-black hover:underline underline-offset-4 transition-all"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Github className="mr-2 h-4 w-4" />
-            View Code
-          </a>
+          {typeof repo === "string" && repo.trim() && (
+            <a
+              href={repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-black hover:underline underline-offset-4 transition-all"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Github className="mr-2 h-4 w-4" />
+              View Code
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
