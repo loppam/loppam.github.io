@@ -212,11 +212,13 @@ export function Update() {
       tags: [],
       published: false,
     });
+    setShowArticleForm(false);
   };
 
   const handleEditArticle = (article: Article) => {
     setNewArticle(article);
     setEditingArticle(article.id);
+    setShowArticleForm(true);
   };
 
   const handleDeleteArticle = async (id: string) => {
@@ -298,11 +300,13 @@ export function Update() {
       approach: "",
       whatIdDoDifferently: "",
     });
+    setShowProjectForm(false);
   };
 
   const handleEditProject = (project: Project) => {
     setNewProject(project);
     setEditingProject(project.id);
+    setShowProjectForm(true);
   };
 
   const handleDeleteProject = async (id: string) => {
@@ -749,6 +753,7 @@ export function Update() {
                           <Button
                             onClick={() => {
                               setEditingArticle(null);
+                              setShowArticleForm(false);
                               setNewArticle({
                                 title: "",
                                 excerpt: "",
@@ -1235,6 +1240,7 @@ export function Update() {
                           <Button
                             onClick={() => {
                               setEditingProject(null);
+                              setShowProjectForm(false);
                               setNewProject({
                                 title: "",
                                 role: "",

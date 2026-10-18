@@ -1,151 +1,143 @@
-import { useState, useEffect } from "react";
-import { motion } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import React from "react";
+import { person } from "../content/site";
+
+const links = [
+  { href: "/#work", label: "Work", id: "work" },
+  { href: "/#experience", label: "Experience", id: "experience" },
+  { href: "/#about", label: "About", id: "about" },
+  { href: "/#contact", label: "Contact", id: "contact" },
+];
 
 export function Nav() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [section, setSection] = useState<string | null>(null);
   const location = useLocation();
+  const menuId = useId();
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const onHome = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 48);
+    setOpen(false);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    const content = document.getElementById("content");
+    const footer = document.querySelector("footer");
+    if (!open) {
+      content?.removeAttribute("aria-hidden");
+      footer?.removeAttribute("aria-hidden");
+      return;
+    }
+    content?.setAttribute("aria-hidden", "true");
+    footer?.setAttribute("aria-hidden", "true");
+    firstLinkRef.current?.focus();
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
     };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      content?.removeAttribute("aria-hidden");
+      footer?.removeAttribute("aria-hidden");
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    // If we're not on the homepage, navigate to homepage first
-    if (location.pathname !== "/") {
-      window.location.href = `/#${id}`;
+  useEffect(() => {
+    if (!onHome) {
+      setSection(null);
       return;
     }
 
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
-    }
-  };
+    const ids = links.map((link) => link.id);
+    let frame = 0;
+    let later = 0;
 
-  const navLinks = [
-    { id: "work", label: "work.", href: "/#work" },
-    { id: "about", label: "about.", href: "/#about" },
-    { id: "contact", label: "contact.", href: "/#contact" },
-    { id: "writings", label: "writings.", href: "/writings" },
-  ];
+    const update = () => {
+      frame = 0;
+      const marker = Math.max(81, window.innerHeight * 0.65);
+      let next: string | null = null;
+      for (const id of ids) {
+        const node = document.getElementById(id);
+        if (!node) continue;
+        if (node.getBoundingClientRect().top <= marker) next = id;
+      }
+      const atBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 8;
+      if (atBottom) next = ids[ids.length - 1];
+      setSection((current) => (current === next ? current : next));
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+      window.clearTimeout(later);
+      later = window.setTimeout(update, 80);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(later);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [onHome, location.hash]);
+
+  const current = (id: string) => (onHome && section === id ? "true" : undefined);
 
   return (
-    <>
-      <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-sm shadow-sm"
-            : "bg-transparent"
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="max-w-[1124px] mx-auto px-4 md:px-10 lg:px-[120px]">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link
-              to="/"
-              className="text-black hover:opacity-70 transition-opacity"
-            >
-              LOPAM
+    <header className="site-header">
+      <div className="shell header-row">
+        <Link to="/" className="wordmark">
+          LOPAM
+        </Link>
+        <nav className="nav-desktop" aria-label="Primary">
+          {links.map((link) => (
+            <Link key={link.id} to={link.href} aria-current={current(link.id)}>
+              {link.label}
             </Link>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) =>
-                link.id === "writings" ? (
-                  <Link
-                    key={link.id}
-                    to={link.href}
-                    className="text-black hover:opacity-70 transition-opacity !font-bold"
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    className="text-black hover:opacity-70 transition-opacity"
-                  >
-                    {link.label}
-                  </button>
-                )
-              )}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-black"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          className="fixed inset-0 z-40 bg-white md:hidden"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          ))}
+        </nav>
+        <a className="header-resume text-link" href={person.resume}>
+          Resume
+        </a>
+        <button
+          ref={toggleRef}
+          className="nav-toggle"
+          type="button"
+          aria-expanded={open}
+          aria-controls={menuId}
+          onClick={() => setOpen((value) => !value)}
         >
-          <div className="flex flex-col items-center justify-center h-full gap-8">
-            {navLinks.map((link, index) =>
-              link.id === "writings" ? (
-                <motion.div
-                  key={link.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  <Link
-                    to={link.href}
-                    className="text-black hover:opacity-70 transition-opacity !font-bold"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ) : (
-                <motion.button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className="text-black hover:opacity-70 transition-opacity"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  {link.label}
-                </motion.button>
-              )
-            )}
-          </div>
-        </motion.div>
-      )}
-    </>
+          {open ? "Close" : "Menu"}
+        </button>
+      </div>
+      {open ? (
+        <nav id={menuId} className="menu-panel" aria-label="Mobile">
+          {links.map((link, index) => (
+            <Link
+              key={link.id}
+              to={link.href}
+              ref={index === 0 ? firstLinkRef : undefined}
+              aria-current={current(link.id)}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a href={person.resume}>Resume</a>
+        </nav>
+      ) : null}
+    </header>
   );
 }
