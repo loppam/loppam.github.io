@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer } from "./components/Footer";
 import { Nav } from "./components/Nav";
+import { ToolField } from "./components/ToolField";
 import { CaseStudy } from "./pages/CaseStudy";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
@@ -17,6 +18,7 @@ export default function App() {
       <a className="skip-link" href="#content">
         Skip to content
       </a>
+      <ToolField />
       <Nav />
       <div id="content">
         <Routes>
