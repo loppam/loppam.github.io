@@ -16,6 +16,7 @@ export function Nav() {
   const menuId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
   const onHome = location.pathname === "/";
 
   useEffect(() => {
@@ -28,10 +29,14 @@ export function Nav() {
     if (!open) {
       content?.removeAttribute("aria-hidden");
       footer?.removeAttribute("aria-hidden");
+      if (content) content.inert = false;
+      if (footer instanceof HTMLElement) footer.inert = false;
       return;
     }
     content?.setAttribute("aria-hidden", "true");
     footer?.setAttribute("aria-hidden", "true");
+    if (content) content.inert = true;
+    if (footer instanceof HTMLElement) footer.inert = true;
     firstLinkRef.current?.focus();
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -39,6 +44,20 @@ export function Nav() {
       if (event.key === "Escape") {
         setOpen(false);
         toggleRef.current?.focus();
+      } else if (event.key === "Tab") {
+        const items = [
+          toggleRef.current,
+          ...Array.from(menuRef.current?.querySelectorAll<HTMLAnchorElement>("a") ?? []),
+        ].filter((item): item is HTMLElement => item !== null);
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
       }
     };
     window.addEventListener("keydown", onKey);
@@ -46,9 +65,20 @@ export function Nav() {
       document.body.style.overflow = previous;
       content?.removeAttribute("aria-hidden");
       footer?.removeAttribute("aria-hidden");
+      if (content) content.inert = false;
+      if (footer instanceof HTMLElement) footer.inert = false;
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   useEffect(() => {
     if (!onHome) {
@@ -108,34 +138,47 @@ export function Nav() {
             </Link>
           ))}
         </nav>
-        <a className="header-resume text-link" href={person.resume}>
+        <a className="header-resume" href={person.resume}>
           Resume
         </a>
         <button
           ref={toggleRef}
           className="nav-toggle"
           type="button"
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
         >
-          {open ? "Close" : "Menu"}
+          <span className="nav-toggle-icon" aria-hidden="true">
+            <span />
+            <span />
+          </span>
         </button>
       </div>
       {open ? (
-        <nav id={menuId} className="menu-panel" aria-label="Mobile">
-          {links.map((link, index) => (
-            <Link
-              key={link.id}
-              to={link.href}
-              ref={index === 0 ? firstLinkRef : undefined}
-              aria-current={current(link.id)}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a href={person.resume}>Resume</a>
+        <nav ref={menuRef} id={menuId} className="menu-panel" aria-label="Mobile">
+          <div className="shell menu-inner">
+            <p className="menu-heading">Explore</p>
+            <div className="menu-links">
+              {links.map((link, index) => (
+                <Link
+                  key={link.id}
+                  to={link.href}
+                  ref={index === 0 ? firstLinkRef : undefined}
+                  aria-current={current(link.id)}
+                  onClick={() => setOpen(false)}
+                >
+                  <span className="menu-number">0{index + 1}</span>
+                  <span className="menu-label">{link.label}</span>
+                  <span className="menu-arrow" aria-hidden="true">→</span>
+                </Link>
+              ))}
+            </div>
+            <a className="menu-resume" href={person.resume} onClick={() => setOpen(false)}>
+              Download resume <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </nav>
       ) : null}
     </header>
