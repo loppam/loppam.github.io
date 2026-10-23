@@ -134,6 +134,7 @@
 
   html {
     background: #070707;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -875,19 +876,46 @@
   line-height: 0.95;
 }
 
+.work-pin.is-pinned {
+  height: 100svh;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+.work-pin.is-pinned .work-panel {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  border-top: 0;
+  padding-top: calc(var(--header) + 1.5rem);
+}
+
 @media (min-width: 800px) {
   .work-pin.is-pinned {
     height: 100dvh;
-    margin-top: 0;
-    overflow: hidden;
+  }
+}
+
+@media (max-width: 799px) {
+  .work-pin.is-pinned .work-panel {
+    padding-bottom: 1rem;
   }
 
-  .work-pin.is-pinned .work-panel {
-    position: absolute;
-    inset: 0;
-    min-height: 0;
-    border-top: 0;
-    padding-top: calc(var(--header) + 1.5rem);
+  .work-pin.is-pinned .work-panel > .shell {
+    max-height: 100%;
+    overflow-y: auto;
+  }
+
+  .work-panel.align-end .work-panel-inner {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+    transform-origin: left center;
+  }
+
+  .work-panel.align-end .tags,
+  .work-panel.align-end .case-actions {
+    justify-content: flex-start;
   }
 }
 
@@ -1074,6 +1102,12 @@
 
   .facts {
     align-content: end;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-work-link {
+    display: none;
   }
 }
 

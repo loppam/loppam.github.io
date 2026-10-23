@@ -37,6 +37,7 @@ export function Home() {
         {
           reduce: "(prefers-reduced-motion: reduce)",
           desktop: "(min-width: 800px)",
+          mobile: "(max-width: 799px)",
         },
         (context) => {
           const reduce = Boolean(context.conditions?.reduce);
@@ -74,12 +75,14 @@ export function Home() {
           });
 
           const pin = page.current?.querySelector(".work-pin");
-          if (desktop && panels.length > 1 && pin) {
+          if (panels.length > 1 && pin) {
             pin.classList.add("is-pinned");
             gsap.set(pieces, { scale: 1, autoAlpha: 1 });
             gsap.set(panels, { autoAlpha: (index) => (index === 0 ? 1 : 0) });
             gsap.set(pieces[0], { scale: 1 });
-            pieces.slice(1).forEach((piece) => gsap.set(piece, { scale: 1.35 }));
+            pieces.slice(1).forEach((piece) =>
+              gsap.set(piece, { scale: desktop ? 1.35 : 1.08 })
+            );
 
             const sequence = gsap.timeline({
               defaults: { ease: "none" },
@@ -107,7 +110,7 @@ export function Home() {
                 )
                 .fromTo(
                   pieces[index],
-                  { scale: 1.28 },
+                  { scale: desktop ? 1.28 : 1.06 },
                   { scale: 1, duration: 0.55 },
                   index + 0.3
                 );
@@ -155,7 +158,7 @@ export function Home() {
             sits behind the login.
           </p>
           <div className="hero-actions reveal">
-            <a className="button-solid" href="#work">
+            <a className="button-solid hero-work-link" href="#work">
               View selected work
             </a>
             <a className="text-link" href={person.resume}>
