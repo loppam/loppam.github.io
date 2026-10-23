@@ -128,7 +128,7 @@ export const cases: CaseStudy[] = [
     domain: "Multi-location scheduling",
     lede: "The homepage sells a booking. The product is the desk that keeps that booking from colliding with three other locations.",
     role: "Frontend Engineer",
-    dates: "Apr 2025–Feb 2026",
+    dates: "Feb 2026–Sep 2026",
     status: "Employment",
     kind: "Employment",
     tags: ["React", "TypeScript", "Turborepo"],
@@ -185,7 +185,7 @@ export const cases: CaseStudy[] = [
     domain: "Crypto and gift cards into naira",
     lede: "A person arrives with USDT or a gift card and leaves with naira in a bank, airtime, or data. The site has to make that trade feel specific.",
     role: "Frontend Developer",
-    dates: "Nov 2025–Present",
+    dates: "Aug 2025–Feb 2026",
     status: "Shipped frontend",
     kind: "Frontend engagement",
     tags: ["React", "TypeScript", "Turborepo", "Vite"],
@@ -464,8 +464,8 @@ export const cases: CaseStudy[] = [
     domain: "E-commerce frontend",
     lede: "A catalog is a brochure until the cart and the checkout agree with each other on a phone.",
     role: "Frontend Developer",
-    dates: "Jan 2021–Present",
-    status: "Long-running product",
+    dates: "Jan 2022–Mar 2024",
+    status: "Past project",
     kind: "Product frontend",
     tags: ["React", "CSS"],
     links: [{ label: "sneaklin.com", href: "https://sneaklin.com/" }],
@@ -485,7 +485,7 @@ export const cases: CaseStudy[] = [
       {
         heading: "Finish the order",
         paragraphs: [
-          "Sneaklin sells online. My work is the frontend a shopper actually uses: finding a product, keeping it in a cart, and paying without the layout falling apart on a phone. The dates run from January 2021.",
+          "Sneaklin sells online. My work was the frontend a shopper actually uses: finding a product, keeping it in a cart, and paying without the layout falling apart on a phone. I worked on it from January 2022 to March 2024.",
           "The live shop is at sneaklin.com. Order totals and old performance claims stay off this page. " +
             nda,
         ],
@@ -548,7 +548,7 @@ export const experience = [
   {
     org: "Buffer",
     role: "Frontend Engineer",
-    dates: "Apr 2025–Feb 2026",
+    dates: "Feb 2026–Sep 2026",
     kind: "Employment",
     tools: "React, TypeScript, Turborepo, Tailwind CSS, Git",
     points: [
@@ -560,7 +560,7 @@ export const experience = [
   {
     org: "JexPay",
     role: "Frontend Developer",
-    dates: "Nov 2025–Present",
+    dates: "Aug 2025–Feb 2026",
     kind: "Frontend engagement",
     tools:
       "React, TypeScript, React Router, Vite, Turborepo, Fetch API, Framer Motion, Recharts",

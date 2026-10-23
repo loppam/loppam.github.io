@@ -3,7 +3,7 @@ export const projects = [
     id: "sneaklin",
     title: "Sneaklin — E-commerce Platform",
     role: "Frontend Developer",
-    duration: "Jan 2021 – Present",
+    duration: "Jan 2022 – Mar 2024",
     tech: ["React", "HTML", "CSS", "Git", "Bootstrap"],
     live_demo: "https://lopam.pario.la/sneaklin",
     repo: "https://github.com/loppam/final",
