@@ -49,6 +49,7 @@ export const person = {
   email: "lopampariola@gmail.com",
   github: "https://github.com/loppam",
   linkedin: "https://www.linkedin.com/in/thatboylopam/",
+  x: "https://x.com/Lopam_",
   resume: "/OloladePariola.pdf",
 };
 

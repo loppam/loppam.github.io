@@ -16,6 +16,9 @@ export function Footer() {
           <a href={person.linkedin} target="_blank" rel="noreferrer noopener">
             LinkedIn
           </a>
+          <a href={person.x} target="_blank" rel="noreferrer noopener">
+            X
+          </a>
           <a href={person.resume}>Resume</a>
         </div>
       </div>

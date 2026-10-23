@@ -353,6 +353,9 @@ export function Home() {
               <a href={person.linkedin}>LinkedIn</a>
             </li>
             <li>
+              <a href={person.x}>X, @Lopam_</a>
+            </li>
+            <li>
               <a href={person.resume}>Resume (PDF)</a>
             </li>
           </ul>
