@@ -53,7 +53,7 @@ export function FrameSlider({ frames }: { frames: Frame[] }) {
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(node);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); animation.current?.stop(); };
   }, [x]);
 
   function settle(nextIndex: number, velocity = 0) {
@@ -144,12 +144,17 @@ export function FrameSlider({ frames }: { frames: Frame[] }) {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
+        onPointerCancel={() => { drag.current.active = false; settle(indexRef.current); }}
+        tabIndex={0}
+        role="group"
+        aria-roledescription="carousel"
+        aria-label="Design reference frames. Use arrow keys to browse."
+        onKeyDown={(event) => { if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); settle(index + (event.key === "ArrowRight" ? 1 : -1)); } }}
       >
         <motion.div className="slider-track" style={{ x }}>
-          {frames.map((item) => (
-            <div key={item.src} className="slider-slide" style={{ width: width || "100%" }}>
-              <img src={item.src} alt={item.alt} draggable={false} />
+          {frames.map((item, frameIndex) => (
+            <div key={item.src} aria-hidden={frameIndex !== index} className="slider-slide" style={{ width: width || "100%" }}>
+              <img src={item.src} alt={item.alt} draggable={false} loading="lazy" decoding="async" />
             </div>
           ))}
         </motion.div>

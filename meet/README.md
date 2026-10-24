@@ -16,7 +16,7 @@ launchpad case study.
 - `vite.config.js`: two HTML build entries and local meet routing.
 - `vercel.json`: specific meet rewrites before the portfolio SPA fallback.
 - `public/meet/`: transparent 360/720px WebP/AVIF portraits and 1200×630 OG JPEG.
-- `public/Ololade-Pariola.vcf`: vCard 3.0 with CRLF endings and no unapproved phone.
+- `public/Ololade-Pariola.vcf`: vCard 3.0 with CRLF endings and the owner-approved mobile number.
 - `.gitattributes`: preserves vCard CRLF line endings across checkouts.
 - `public/sitemap.xml`: discoverable meet URL.
 - `scripts/check-meet.mjs`: dependency-free built-artifact checks.
@@ -48,7 +48,7 @@ simulated; OS share sheets and iOS/Android Contacts imports were not tested.
 
 ## Owner items and content boundaries
 
-- No public phone number was supplied. Approve one before adding a TEL field.
+- Public mobile number: +234 913 802 7017 (approved October 24, 2026).
 - Traction metrics were omitted: this portfolio has claims but no underlying
   analytics establishing current ticket/user counts.
 - GitHub, X, and Noctix returned HTTP 200 during destination checks. LinkedIn
@@ -62,3 +62,5 @@ Keep CRLF endings, escape vCard text delimiters if added, and fold physical
 lines at 75 UTF-8 octets. The check script detects contact drift and malformed
 line endings. When changing the introduction, keep the page hook and initial
 HTML metadata in sync.
+
+The owner approved mobile 09138027017 on October 24, 2026. The shared vCard now includes TEL;TYPE=CELL:+2349138027017. The /meet interface is unchanged.

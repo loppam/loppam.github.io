@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { MotionConfig } from "motion/react";
 import { Route, Routes } from "react-router-dom";
 import { Footer } from "../components/Footer";
 import { Nav } from "../components/Nav";
@@ -8,13 +9,15 @@ import { Home } from "./Home";
 import { NotFound } from "./NotFound";
 import { Writing } from "./Writing";
 
+import "../styles/portfolio.css";
+
 const Update = lazy(() =>
   import("./Update").then((module) => ({ default: module.Update }))
 );
 
 export default function Portfolio() {
   return (
-    <>
+    <MotionConfig reducedMotion="user"><div className="portfolio-site">
       <a className="skip-link" href="#content">
         Skip to content
       </a>
@@ -38,6 +41,6 @@ export default function Portfolio() {
         </Routes>
       </div>
       <Footer />
-    </>
+    </div></MotionConfig>
   );
 }

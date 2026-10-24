@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Breadcrumb } from "../components/Breadcrumb";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export function NotFound() {
+  const { pathname } = useLocation();
   usePageMeta(
     "Page not found · LOPAM",
-    "That page is not on Pariola Ololade's site."
+    "That page is not on Pariola Ololade's site.",
+    { url: `https://lopam.pario.la${pathname}`, noindex: true }
   );
 
   return (

@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 
-type PageMeta = { url?: string; image?: string; imageAlt?: string };
+type PageMeta = { url?: string; image?: string; imageAlt?: string; noindex?: boolean };
 
 export function usePageMeta(title: string, description: string, options: PageMeta = {}) {
-  const { url = "https://lopam.pario.la/", image, imageAlt } = options;
+  const { url = "https://lopam.pario.la/", image, imageAlt, noindex = false } = options;
   useEffect(() => {
     document.title = title;
     const fields = [
       ["name", "description", description],
+      ["name", "robots", noindex ? "noindex, nofollow" : "index, follow"],
       ["property", "og:title", title],
       ["property", "og:description", description],
       ["property", "og:url", url],
@@ -38,5 +39,5 @@ export function usePageMeta(title: string, description: string, options: PageMet
       document.head.appendChild(canonical);
     }
     canonical.href = url;
-  }, [title, description, url, image, imageAlt]);
+  }, [title, description, url, image, imageAlt, noindex]);
 }

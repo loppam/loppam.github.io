@@ -4,8 +4,54 @@
   "devCommand": "vite --port $PORT",
   "installCommand": "npm install",
   "rewrites": [
-    { "source": "/meet", "destination": "/meet/index.html" },
-    { "source": "/meet/", "destination": "/meet/index.html" },
+    {
+      "source": "/meet",
+      "destination": "/meet/index.html"
+    },
+    {
+      "source": "/meet/",
+      "destination": "/meet/index.html"
+    },
+    {
+      "source": "/work/noctix",
+      "destination": "/work/noctix/index.html"
+    },
+    {
+      "source": "/work/buffer",
+      "destination": "/work/buffer/index.html"
+    },
+    {
+      "source": "/work/jexpay",
+      "destination": "/work/jexpay/index.html"
+    },
+    {
+      "source": "/work/noc",
+      "destination": "/work/noc/index.html"
+    },
+    {
+      "source": "/work/cope",
+      "destination": "/work/cope/index.html"
+    },
+    {
+      "source": "/work/nomba",
+      "destination": "/work/nomba/index.html"
+    },
+    {
+      "source": "/work/sneaklin",
+      "destination": "/work/sneaklin/index.html"
+    },
+    {
+      "source": "/work/unichow",
+      "destination": "/work/unichow/index.html"
+    },
+    {
+      "source": "/writings",
+      "destination": "/writings/index.html"
+    },
+    {
+      "source": "/update",
+      "destination": "/update/index.html"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

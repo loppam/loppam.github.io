@@ -129,7 +129,7 @@ export function Nav() {
     <header className="site-header">
       <div className="shell header-row">
         <Link to="/" className="wordmark">
-          LOPAM
+          LOPAM<span aria-hidden="true" className="brand-dot">.</span>
         </Link>
         <nav className="nav-desktop" aria-label="Primary">
           {links.map((link) => (

@@ -21,7 +21,7 @@ import {
   TabsTrigger,
 } from "../components/ui/tabs";
 import { Login } from "../components/Login";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { usePageMeta } from "../hooks/usePageMeta";
 import React from "react";
 
 interface Article {
@@ -53,7 +53,7 @@ interface Project {
 }
 
 export function Update() {
-  useDocumentTitle("LOPAM Update - Admin");
+  usePageMeta("LOPAM Update - Admin", "Local portfolio draft editor.", { url: "https://lopam.pario.la/update", noindex: true });
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [articles, setArticles] = useState<Article[]>([]);
@@ -161,7 +161,7 @@ export function Update() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="editor-page min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
           <p className="text-black/70">Loading content...</p>
@@ -376,7 +376,7 @@ export function Update() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="editor-page min-h-screen bg-white">
       {/* Header */}
       <section className="py-24 px-4 md:px-10 lg:px-[120px] bg-gradient-to-b from-transparent to-black/[0.02]">
         <div className="max-w-[1100px] mx-auto">
@@ -403,8 +403,7 @@ export function Update() {
                   </h1>
 
                   <p className="text-black/70 max-w-2xl leading-relaxed">
-                    Manage your articles, portfolio content, and site updates.
-                    This is your personal CMS for keeping your portfolio fresh.
+                    Local draft editor. Changes in this session are not published to the site.
                   </p>
                 </div>
 
@@ -496,6 +495,7 @@ export function Update() {
                     </Button>
                   </div>
 
+                  {articles.length === 0 && <p className="editor-empty">No articles in this session. Add a draft to start writing.</p>}
                   {articles.map((article) => (
                     <div
                       key={article.id}
@@ -746,7 +746,7 @@ export function Update() {
                           className="bg-black text-white hover:bg-black/90 transition-all duration-200"
                         >
                           <Save className="mr-2 h-4 w-4" />
-                          {editingArticle ? "Update Article" : "Save Article"}
+                          {editingArticle && editingArticle !== "new" ? "Update draft" : "Add draft"}
                         </Button>
 
                         {editingArticle && (
@@ -824,6 +824,7 @@ export function Update() {
                     </Button>
                   </div>
 
+                  {projects.length === 0 && <p className="editor-empty">No projects in this editor. Public case studies are managed in the site content file.</p>}
                   {projects.map((project) => (
                     <div
                       key={project.id}
@@ -1233,7 +1234,7 @@ export function Update() {
                           className="bg-black text-white hover:bg-black/90 transition-all duration-200"
                         >
                           <Save className="mr-2 h-4 w-4" />
-                          {editingProject ? "Update Project" : "Save Project"}
+                          {editingProject && editingProject !== "new" ? "Update draft" : "Add draft"}
                         </Button>
 
                         {editingProject && (

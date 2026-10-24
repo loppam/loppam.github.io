@@ -16,7 +16,8 @@ export function CaseStudy() {
       : "Case study not found · LOPAM",
     item
       ? item.lede
-      : "That case study is not on this site."
+      : "That case study is not on this site.",
+    { url: `https://lopam.pario.la/work/${slug}`, noindex: !item }
   );
 
   if (!item) return <NotFound />;
@@ -72,17 +73,18 @@ export function CaseStudy() {
 
         {item.cover ? (
           <figure className="shot">
-            <img src={item.cover.src} alt={item.cover.alt} />
+            <img src={item.cover.src} alt={item.cover.alt} width="1440" height="871" decoding="async" />
             <figcaption>{item.cover.caption}</figcaption>
           </figure>
         ) : null}
 
-        {item.frames ? <FrameSlider frames={item.frames} /> : null}
-
         <FlowDiagram diagram={item.diagram} />
 
-        {item.sections.map((section) => (
-          <section key={section.heading} className="case-section">
+        <div className="case-body">
+        <nav className="case-contents" aria-label="Case study sections"><p className="kicker">In this case study</p>{item.sections.map((section, index) => <a href={`#section-${index}`} key={section.heading}>{section.heading}</a>)}</nav>
+        <div>
+        {item.sections.map((section, index) => (
+          <section key={section.heading} id={`section-${index}`} className="case-section">
             <h2>{section.heading}</h2>
             {section.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -96,6 +98,9 @@ export function CaseStudy() {
             ) : null}
           </section>
         ))}
+
+        </div></div>
+        {item.frames ? <><h2>Design reference gallery</h2><FrameSlider frames={item.frames} /></> : null}
 
         <p className="next-case">
           <Link to={`/work/${next.slug}`}>Next: {next.title}</Link>

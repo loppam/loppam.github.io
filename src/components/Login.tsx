@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Lock, User, Eye, EyeOff } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -37,7 +36,7 @@ export function Login({ onLogin }: LoginProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4 md:px-10 lg:px-[120px]">
+    <div className="editor-page min-h-screen bg-white flex items-center justify-center px-4 md:px-10 lg:px-[120px]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,7 +59,7 @@ export function Login({ onLogin }: LoginProps) {
           </h1>
 
           <p className="text-black/70 max-w-2xl mx-auto leading-relaxed">
-            Sign in to manage your content
+            Sign in to the local draft editor. This interface does not publish changes.
           </p>
         </div>
 
@@ -72,10 +71,11 @@ export function Login({ onLogin }: LoginProps) {
             <div className="relative">
               <Input
                 id="username"
+                autoComplete="username"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="pl-10 border-black/20 focus:border-black"
+                className="pl-3 border-black/20 focus:border-black"
                 placeholder="Enter username"
                 required
               />
@@ -89,13 +89,15 @@ export function Login({ onLogin }: LoginProps) {
             <div className="relative">
               <Input
                 id="password"
+                autoComplete="current-password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 pr-10 border-black/20 focus:border-black"
+                className="pl-3 pr-16 border-black/20 focus:border-black"
                 placeholder="Enter password"
                 required
               />
+              <button type="button" className="absolute right-2 top-0 text-sm" aria-label={showPassword ? "Hide password" : "Show password"} onClick={() => setShowPassword(!showPassword)}>{showPassword ? "Hide" : "Show"}</button>
             </div>
           </div>
 

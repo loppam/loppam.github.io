@@ -10,7 +10,7 @@ const unfolded = card.replace(/\r\n[ \t]/g, '');
 for (const field of ['BEGIN:VCARD', 'VERSION:3.0', 'N:Pariola;Ololade;;;', 'FN:Pariola Ololade', 'TITLE:Software Engineer & Founder', 'ORG:LOPAM', 'END:VCARD']) {
   assert.ok(unfolded.split('\r\n').includes(field), `Missing contact field: ${field}`);
 }
-assert.ok(!/^TEL[;:]/m.test(unfolded), 'No public phone number has been approved');
+assert.ok(unfolded.includes('TEL;TYPE=CELL:+2349138027017'), 'Approved public mobile number must be present');
 const content = read('src/content/site.ts');
 for (const field of ['email', 'github', 'linkedin', 'x']) {
   const value = content.match(new RegExp(`\\b${field}: "([^"]+)"`))?.[1];

@@ -5,7 +5,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
 export function Writing() {
   usePageMeta(
     "Writing · LOPAM",
-    "Published notes are not on this site. Earlier drafts were taken down because they repeated unchecked project figures."
+    "Notes on frontend engineering and product implementation by Pariola Ololade.",
+    { url: "https://lopam.pario.la/writings" }
   );
 
   return (
@@ -17,9 +18,8 @@ export function Writing() {
           No published notes yet.
         </h1>
         <p className="writing-copy">
-          Earlier drafts on this site repeated order totals and performance
-          figures I have not rechecked. I took them down. The case studies are
-          the record for now.
+          For now, the case studies cover my implementation work and the
+          decisions behind it. There are no published articles here yet.
         </p>
         <p className="inline-links">
           <Link className="text-link" to="/#work">

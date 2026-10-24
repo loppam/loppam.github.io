@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { person } from "../content/site";
 
 export function Footer() {
@@ -6,7 +7,7 @@ export function Footer() {
       <div className="shell footer-row">
         <div>
           <div className="wordmark">LOPAM</div>
-          <div>{person.role}</div>
+          <div>{person.role} · {person.location}</div>
         </div>
         <div className="footer-links">
           <a href={`mailto:${person.email}`}>Email</a>
@@ -20,6 +21,8 @@ export function Footer() {
             X
           </a>
           <a href={person.resume}>Resume</a>
+          <Link to="/writings">Writing</Link>
+          <Link to="/meet">Meet Ololade</Link>
         </div>
       </div>
     </footer>
