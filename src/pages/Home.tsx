@@ -20,13 +20,45 @@ export function Home() {
   }, [hash]);
   useGSAP(() => {
     const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
+    media.add({
+      desktop: "(min-width: 768px)",
+      mobile: "(max-width: 767px)",
+      reduce: "(prefers-reduced-motion: reduce)",
+    }, (context) => {
+      if (context.conditions?.reduce) return;
+      const desktop = Boolean(context.conditions?.desktop);
       gsap.from(".reveal", { opacity: 0, y: 16, duration: .55, stagger: .07, ease: "power2.out" });
       gsap.utils.toArray<HTMLElement>(".rise").forEach((node) => {
         gsap.from(node, { opacity: 0, y: 18, duration: .5, ease: "power2.out", scrollTrigger: { trigger: node, start: "top 94%", once: true } });
       });
+
+      const removeListeners: (() => void)[] = [];
+      gsap.utils.toArray<HTMLElement>(".project-card").forEach((card) => {
+        const image = card.querySelector(".project-image");
+        const copy = card.querySelector(".project-copy");
+        if (!image || !copy) return;
+        // Trigger on the stationary card; animate its children without changing layout.
+        const reveal = gsap.timeline({
+          defaults: { ease: "power2.out" },
+          scrollTrigger: { trigger: card, start: "clamp(top 92%)", once: true },
+        });
+        reveal.from(image, {
+          opacity: .35, y: desktop ? 32 : 18, scale: .985,
+          duration: desktop ? .7 : .5, clearProps: "transform,opacity",
+        }).from(Array.from(copy.children), {
+          opacity: 0, y: desktop ? 16 : 10, duration: .45,
+          stagger: .055, clearProps: "transform,opacity",
+        }, desktop ? .14 : .08);
+        // Keyboard navigation should never land on a link waiting to be revealed.
+        const showOnFocus = () => { reveal.progress(1); };
+        card.addEventListener("focusin", showOnFocus);
+        removeListeners.push(() => card.removeEventListener("focusin", showOnFocus));
+      });
+      return () => removeListeners.forEach(remove => remove());
     });
-    return () => media.revert();
+    let active = true;
+    document.fonts.ready.then(() => { if (active) ScrollTrigger.refresh(); });
+    return () => { active = false; media.revert(); };
   }, { scope: page });
   return (
     <main ref={page}>
@@ -50,7 +82,7 @@ export function Home() {
       <section id="work" className="section shell">
         <div className="section-heading rise"><div><p className="kicker">01 / Selected work</p><h2>Built for real use.</h2></div><p>Product context, implementation decisions, and the work behind each interface.</p></div>
         <div className="project-grid">
-          {selected.map((item, index) => <article key={item.slug} className={`project-card rise ${index === 0 ? "project-flagship" : ""}`}>
+          {selected.map((item, index) => <article key={item.slug} className={`project-card ${index === 0 ? "project-flagship" : ""}`}>
             {item.cover && <Link className="project-image" to={`/work/${item.slug}`} aria-label={`Read the ${item.title} case study`}><img src={item.cover.src} alt={item.cover.alt} loading="lazy" decoding="async" width="1440" height="871" /><span>{item.slug === "noc" ? "Earlier public site" : "Public site preview"}</span></Link>}
             <div className="project-copy"><p className="kicker">{item.role} · {item.dates}</p><h3><Link to={`/work/${item.slug}`}>{item.title}<span aria-hidden="true">↗</span></Link></h3><p className="project-domain">{item.domain}</p><p>{item.summary}</p><ul className="tags">{item.tags.map(tag => <li key={tag}>{tag}</li>)}</ul><Link className="text-link" to={`/work/${item.slug}`}>Explore the engineering <span aria-hidden="true">→</span></Link></div>
           </article>)}

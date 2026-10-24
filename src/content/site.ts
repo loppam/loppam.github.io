@@ -307,8 +307,8 @@ export const cases: CaseStudy[] = [
     "domain": "Solana launchpad",
     "lede": "A separate Solana engineering project covering launch validation, market interfaces, and holder accounting.",
     "role": "Engineering",
-    "dates": "In progress",
-    "status": "Public product",
+    "dates": "Completed",
+    "status": "Completed project",
     "kind": "Technical project",
     "tags": [
       "TypeScript",
