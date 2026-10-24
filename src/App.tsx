@@ -1,43 +1,27 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Footer } from "./components/Footer";
-import { Nav } from "./components/Nav";
-import { ToolField } from "./components/ToolField";
-import { CaseStudy } from "./pages/CaseStudy";
-import { Home } from "./pages/Home";
-import { NotFound } from "./pages/NotFound";
-import { Writing } from "./pages/Writing";
+import { lazy, Suspense, useLayoutEffect } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
-const Update = lazy(() =>
-  import("./pages/Update").then((module) => ({ default: module.Update }))
-);
+const Meet = lazy(() => import("./pages/Meet").then((module) => ({ default: module.Meet })));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+
+function RouteScroll() {
+  const { pathname, hash } = useLocation();
+  useLayoutEffect(() => {
+    if (!hash) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname, hash]);
+  return null;
+}
 
 export default function App() {
   return (
     <BrowserRouter>
-      <a className="skip-link" href="#content">
-        Skip to content
-      </a>
-      <ToolField />
-      <Nav />
-      <div id="content">
+      <RouteScroll />
+      <Suspense fallback={<main className="shell writing-page" role="status">Loading.</main>}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/work/:slug" element={<CaseStudy />} />
-          <Route path="/writings" element={<Writing />} />
-          <Route path="/writings/:slug" element={<Writing />} />
-          <Route
-            path="/update"
-            element={
-              <Suspense fallback={<main className="shell writing-page">Loading.</main>}>
-                <Update />
-              </Suspense>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/meet" element={<Meet />} />
+          <Route path="*" element={<Portfolio />} />
         </Routes>
-      </div>
-      <Footer />
+      </Suspense>
     </BrowserRouter>
   );
 }

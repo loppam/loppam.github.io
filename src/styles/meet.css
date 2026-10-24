@@ -1,0 +1,115 @@
+.meet-page { background: var(--paper); color: var(--ink); min-height: 100vh; }
+.meet-page a { text-decoration: none; }
+.meet-page button { font: inherit; cursor: pointer; }
+.meet-page button:disabled { cursor: wait; opacity: .6; }
+.meet-page :focus-visible { outline: 2px solid #f4f4f4; outline-offset: 5px; }
+.meet-shell { width: min(1120px, calc(100% - 2.5rem)); margin-inline: auto; }
+.meet-header { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 1rem; }
+.meet-wordmark { font: 700 1.5rem/1 var(--font-display); letter-spacing: -.06em; min-height: 44px; display: inline-flex; align-items: center; }
+.meet-wordmark span { color: #939393; }
+.meet-header-note { display: none; color: var(--muted); font-size: .8rem; margin-left: auto; }
+.meet-share-icon { width: 44px; height: 44px; border: 1px solid var(--line); color: var(--ink); background: transparent; border-radius: 50%; display: grid; place-items: center; }
+.meet-intro { display: flex; flex-direction: column; padding: 6px 0 48px; }
+.meet-portrait { width: 144px; margin: 0 0 20px; position: relative; }
+.meet-portrait picture, .meet-portrait img { display: block; width: 100%; height: auto; }
+.meet-portrait-note { display: none; }
+.meet-eyebrow { font-size: .65rem; letter-spacing: .14em; line-height: 1.5; font-weight: 600; text-transform: uppercase; color: #a0a0a0; margin: 0 0 16px; }
+.meet-intro h1 { font-size: clamp(3.1rem, 12vw, 5.5rem); line-height: .98; letter-spacing: -.055em; margin: 0; }
+.meet-intro h1 span { color: #f4f4f4; }
+.meet-intro-lede { max-width: 43ch; font-size: 1rem; line-height: 1.55; margin: 20px 0 0; color: #cecece; }
+.meet-now { max-width: 42ch; font-size: .85rem; line-height: 1.6; color: #969696; margin: 12px 0 0; }
+.meet-now a { color: var(--ink); border-bottom: 1px solid #666; }
+.meet-intro-actions { margin-top: 24px; }
+.meet-save { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 50px; padding: 0 22px; color: #070707; background: #f4f4f4; font-size: .88rem; font-weight: 600; border: 1px solid #f4f4f4; border-radius: 3px; transition: background .18s ease, transform .18s ease; }
+.meet-save:hover { background: #ddd; }
+.meet-save:active { transform: scale(.98); }
+.meet-socials { display: flex; flex-wrap: wrap; align-items: center; gap: 0 22px; }
+.meet-socials a { display: inline-flex; min-height: 44px; min-width: 44px; align-items: center; gap: 5px; font-size: .8rem; color: #b7b7b7; }
+.meet-socials a:hover, .meet-venture-links a:hover, .meet-footer a:hover { color: white; }
+.meet-intro-actions .meet-socials { margin-top: 12px; }
+.meet-section { border-top: 1px solid var(--line); padding: 44px 0; }
+.meet-section h2 { font-size: clamp(2rem, 7.8vw, 3.7rem); line-height: 1.06; letter-spacing: -.045em; margin: 0; }
+.meet-building-copy > p { font-size: 1rem; line-height: 1.7; max-width: 47ch; color: #aaa; margin: 22px 0 0; }
+.meet-venture { margin-top: 30px; background: #111; border: 1px solid #252525; border-radius: 5px; overflow: hidden; }
+.meet-venture-image { position: relative; overflow: hidden; }
+.meet-venture-image img { display: block; width: 100%; height: auto; }
+.meet-venture-image > span { position: absolute; left: 14px; bottom: 14px; background: #070707; color: #f4f4f4; border: 1px solid #383838; border-radius: 2px; padding: 6px 9px; font-size: .55rem; letter-spacing: .12em; }
+.meet-venture-copy { padding: 24px 20px; }
+.meet-product-heading h3 { font-size: 2rem; line-height: 1; margin: 0; letter-spacing: -.04em; }
+.meet-product-heading > span { display: block; margin-top: 10px; font-size: .75rem; color: #919191; }
+.meet-venture-copy > p { color: #b7b7b7; font-size: .9rem; line-height: 1.7; margin: 20px 0; }
+.meet-venture-links { display: flex; flex-wrap: wrap; gap: 0 24px; }
+.meet-venture-links a { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; }
+.meet-section-note { color: #939393; font-size: .85rem; margin: 18px 0 0; }
+.meet-projects { display: grid; gap: 36px; margin-top: 30px; }
+.meet-project { min-width: 0; }
+.meet-project-image { position: relative; display: block; overflow: hidden; border: 1px solid #262626; border-radius: 3px; aspect-ratio: 1440 / 871; background: #151515; }
+.meet-project-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s ease; }
+.meet-project-image:hover img { transform: scale(1.025); }
+.meet-project-number { position: absolute; right: 12px; bottom: 12px; font: 500 .65rem/1 var(--font-body); background: #070707; padding: 7px 8px; border: 1px solid #383838; border-radius: 2px; }
+.meet-project-role { margin: 20px 0 8px; color: #949494; font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; }
+.meet-project h3 { margin: 0; font-size: 1.8rem; line-height: 1.1; }
+.meet-project h3 a { display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
+.meet-project h3 svg { color: #949494; }
+.meet-project-description { font-size: .95rem; color: #d4d4d4; line-height: 1.6; margin: 12px 0; }
+.meet-contribution { font-size: .85rem; line-height: 1.7; color: #a2a2a2; margin: 0; }
+.meet-project-detail { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid #242424; font-size: .67rem; color: #9b9b9b; letter-spacing: .025em; }
+.meet-portfolio-link { margin-top: 30px; display: inline-flex; align-items: center; gap: 22px; min-height: 48px; border-bottom: 1px solid #666; font-size: .85rem; }
+.meet-connect > p:not(.meet-eyebrow) { max-width: 48ch; color: #a9a9a9; font-size: 1rem; line-height: 1.7; margin: 24px 0; }
+.meet-connect-actions { display: flex; gap: 14px 24px; flex-wrap: wrap; align-items: center; }
+.meet-email { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 50px; font-size: .85rem; }
+.meet-connect-secondary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 30px; margin-top: 22px; }
+.meet-share-text { display: inline-flex; align-items: center; gap: 8px; color: #b7b7b7; font-size: .8rem !important; min-height: 44px; padding: 0; background: none; border: 0; }
+.meet-footer { border-top: 1px solid var(--line); min-height: 88px; padding-block: 20px max(20px, env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 15px; font-size: .7rem; color: #a1a1a1; }
+.meet-footer a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; }
+.meet-feedback { position: fixed; bottom: max(20px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); max-width: calc(100% - 32px); width: max-content; display: flex; align-items: center; gap: 10px; border-radius: 4px; font-size: .85rem; background: #f4f4f4; color: #070707; z-index: 100; }
+.meet-feedback.is-visible { padding: 12px 18px; border: 1px solid #bbb; }
+.meet-copy-fallback { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); width: min(430px, calc(100% - 32px)); background: #151515; border: 1px solid #777; padding: 20px; border-radius: 5px; z-index: 100; }
+.meet-copy-fallback label { display: block; font-size: .85rem; }
+.meet-copy-fallback input { width: 100%; min-height: 44px; margin-top: 10px; padding: 8px; color: #fff; background: #070707; border: 1px solid #777; font-size: 16px; }
+.meet-copy-fallback button { min-height: 44px; background: none; color: white; border: none; margin-top: 8px; }
+@media (max-width: 767px) and (max-height: 700px) {
+  .meet-header { height: 60px; }
+  .meet-portrait { width: 104px; margin-bottom: 14px; }
+  .meet-intro { padding-top: 0; }
+  .meet-intro h1 { font-size: 2.8rem; }
+  .meet-eyebrow { margin-bottom: 12px; }
+  .meet-intro-lede { font-size: .9rem; margin-top: 14px; }
+  .meet-intro-actions { margin-top: 18px; }
+}
+@media (min-width: 768px) {
+  .meet-shell { width: min(1120px, calc(100% - 5rem)); }
+  .meet-header { height: 100px; }
+  .meet-header-note { display: block; }
+  .meet-intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; padding: 60px 0 90px; }
+  .meet-intro-copy { grid-column: 1; grid-row: 1; }
+  .meet-portrait { grid-column: 2; grid-row: 1; width: 100%; max-width: 420px; margin: 0 0 0 auto; transform: rotate(3deg); }
+  .meet-portrait-note { display: block; font-size: .75rem; letter-spacing: .03em; color: #8e8e8e; text-align: center; margin-top: 22px; transform: rotate(-3deg); }
+  .meet-intro h1 { font-size: clamp(3.8rem, 6.5vw, 5.6rem); }
+  .meet-intro-lede { font-size: 1.1rem; margin-top: 26px; }
+  .meet-intro-actions { margin-top: 30px; }
+  .meet-section { padding: 72px 0; }
+  .meet-building-copy { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 60px; }
+  .meet-building-copy > p { margin: 0; font-size: 1.05rem; }
+  .meet-venture { margin-top: 38px; display: grid; grid-template-columns: 1.1fr 1fr; }
+  .meet-venture-image { display: flex; align-items: center; background: #0b0b0b; }
+  .meet-venture-copy { padding: 30px; }
+  .meet-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+  .meet-section-note { margin: 0 0 4px; }
+  .meet-projects { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 42px; }
+  .meet-project { display: flex; flex-direction: column; }
+  .meet-project-detail { margin-top: auto; }
+  .meet-contribution { padding-bottom: 24px; }
+  .meet-connect { padding: 86px 0; }
+  .meet-footer { min-height: 100px; }
+}
+@media (min-width: 1100px) {
+  .meet-intro { padding-top: 72px; padding-bottom: 112px; }
+  .meet-intro h1 { font-size: 6rem; }
+  .meet-venture-copy { padding: 42px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .meet-intro-copy { animation: meet-enter .5s ease-out both; }
+  .meet-portrait picture { animation: meet-enter .6s ease-out both; }
+  @keyframes meet-enter { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
+}

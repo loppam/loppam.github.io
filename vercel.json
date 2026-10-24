@@ -4,6 +4,8 @@
   "devCommand": "vite --port $PORT",
   "installCommand": "npm install",
   "rewrites": [
+    { "source": "/meet", "destination": "/meet/index.html" },
+    { "source": "/meet/", "destination": "/meet/index.html" },
     {
       "source": "/(.*)",
       "destination": "/index.html"

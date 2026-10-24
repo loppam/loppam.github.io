@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:meet": "node scripts/check-meet.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

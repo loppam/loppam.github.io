@@ -1,0 +1,2 @@
+# vCard requires CRLF; preserve it in every checkout.
+*.vcf -text whitespace=cr-at-eol
